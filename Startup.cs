@@ -32,6 +32,9 @@ namespace Pokedex
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pokedex", Version = "v1" });
             });
+            services.AddHttpClient("pokeApi", c => {
+                c.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon/");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

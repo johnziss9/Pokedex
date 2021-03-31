@@ -8,19 +8,21 @@ namespace Pokedex.Controllers
     [Route("[controller]")]
     public class PokemonController : ControllerBase
     {
-        private static HttpClient _httpClient;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public PokemonController()
+        public PokemonController(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = new HttpClient();
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<string> Get(string name)
         {
+            var httpClient = _httpClientFactory.CreateClient("pokeApi");
+
             // Hard coded the name to test if url brings the correct data
-            var url = $"https://pokeapi.co/api/v2/pokemon/pikachu";
-            
-            var response = await _httpClient.GetAsync(url);
+            var url = $"pikachu";
+
+            var response = await httpClient.GetAsync(url);
 
             return await response.Content.ReadAsStringAsync();
         }
