@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Pokedex.Services;
 
 namespace Pokedex.Controllers
 {
@@ -8,23 +9,17 @@ namespace Pokedex.Controllers
     [Route("[controller]")]
     public class PokemonController : ControllerBase
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IPokemonService _pokemonService;
 
-        public PokemonController(IHttpClientFactory httpClientFactory)
+        public PokemonController(IPokemonService pokemonService)
         {
-            _httpClientFactory = httpClientFactory;
+            _pokemonService = pokemonService;
         }
 
         public async Task<string> Get(string name)
         {
-            var httpClient = _httpClientFactory.CreateClient("pokeApi");
-
-            // Hard coded the name to test if url brings the correct data
-            var url = $"pikachu";
-
-            var response = await httpClient.GetAsync(url);
-
-            return await response.Content.ReadAsStringAsync();
+            // Name is hard coded for testing purposes.
+            return await _pokemonService.Get("pikachu");
         }
     }
 }

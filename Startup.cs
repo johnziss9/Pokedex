@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Pokedex.Services;
 
 namespace Pokedex
 {
@@ -32,7 +33,7 @@ namespace Pokedex
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pokedex", Version = "v1" });
             });
-            services.AddHttpClient("pokeApi", c => {
+            services.AddHttpClient<IPokemonService, PokemonService>(c => {
                 c.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon/");
             });
         }
