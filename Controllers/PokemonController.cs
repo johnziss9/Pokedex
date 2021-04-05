@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Pokedex.Models;
 using Pokedex.Services;
 
 namespace Pokedex.Controllers
@@ -16,10 +17,10 @@ namespace Pokedex.Controllers
             _pokemonService = pokemonService;
         }
 
-        public async Task<string> Get(string name)
+        [HttpGet("{name}")]
+        public async Task<Pokemon> Get(string name)
         {
-            // Name is hard coded for testing purposes.
-            return await _pokemonService.Get("pikachu");
+            return await _pokemonService.Get(name);
         }
     }
 }
