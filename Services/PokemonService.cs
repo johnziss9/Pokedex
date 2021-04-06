@@ -1,9 +1,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Linq;
 using Pokedex.Models;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace Pokedex.Services
 {
@@ -20,6 +17,14 @@ namespace Pokedex.Services
         {
             string pokemonName = $"{name}";
             var response = await _httpClient.GetAsync(pokemonName);
+
+            // var pokemonId = 25;// response.Content.ReadAsAsync<Pokemon>().Id;
+
+            // var newResponse = await _httpClient.GetAsync(pokemonId.ToString());
+
+            // var x = JsonConvert.DeserializeObject<Pokemon>(response.Content.ToString());
+
+            // var y = JsonConvert.SerializeObject(x);
 
             return await response.Content.ReadAsAsync<Pokemon>();
         }

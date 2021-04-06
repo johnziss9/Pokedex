@@ -33,8 +33,11 @@ namespace Pokedex
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pokedex", Version = "v1" });
             });
+            // services.AddHttpClient<IPokemonService, PokemonService>(c => {
+            //     c.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon/");
+            // });
             services.AddHttpClient<IPokemonService, PokemonService>(c => {
-                c.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon/");
+                c.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon-species/");
             });
         }
 
