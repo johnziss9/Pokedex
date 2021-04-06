@@ -24,7 +24,7 @@ namespace Pokedex.Services
 
             var description = data.flavor_text_entries.FirstOrDefault(d => d.Language.name == "en").flavor_text;
 
-            var jsonOutput = @" { 'name': '" + data.Name + "', 'description': '" + description + "', 'habitat': '" + data.Habitat.Name + "', 'isLegendary': '" + data.IsLegendary + "' } ";
+            var jsonOutput = @" { 'name': '" + data.Name + "', 'description': '" + description + "', 'habitat': '" + data.Habitat.Name + "', 'isLegendary': '" + data.Is_Legendary + "' } ";
 
             return JsonConvert.DeserializeObject<Pokemon>(jsonOutput);
         }
