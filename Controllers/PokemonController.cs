@@ -21,5 +21,11 @@ namespace Pokedex.Controllers
         {
             return await _pokemonService.Get(name);
         }
+
+        [HttpGet("translated/{name}")]
+        public async Task<Pokemon> GetTranslated(string name)
+        {
+            return await _pokemonService.GetTranslated(name);
+        }
     }
 }
